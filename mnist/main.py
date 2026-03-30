@@ -34,9 +34,6 @@ def print_gpu_info():
     print(f"Max Threads per Block: {props.max_threads_per_block}")
     print(f"Max Threads per SM: {props.max_threads_per_multi_processor}")
     
-    # Dimensioni kernel
-    print(f"Max Grid Size: {props.max_grid_size}")
-    print(f"Max Block Size: {props.max_threads_dim}")
     
     # Clock (se disponibile)
     try:
