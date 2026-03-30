@@ -41,12 +41,6 @@ def print_gpu_info():
     except:
         pass
     
-    # Memoria condivisa / cache
-    print(f"Shared Memory per Block: {props.shared_memory_per_block / 1024:.2f} KB")
-    print(f"L2 Cache Size: {props.l2_cache_size / 1024:.2f} KB")
-    
-    # Warp
-    print(f"Warp Size: {props.warp_size}")
     
     # Utilizzo memoria runtime
     allocated = torch.cuda.memory_allocated(i) / 1024**2
