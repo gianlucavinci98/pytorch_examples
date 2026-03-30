@@ -6,11 +6,6 @@ import torch.optim as optim
 from torchvision import datasets, transforms
 from torch.optim.lr_scheduler import StepLR
 
-import os
-print("=== ENV DEBUG ===")
-print("CUDA_VISIBLE_DEVICES:", os.environ.get("CUDA_VISIBLE_DEVICES"))
-print("=================")
-
 def print_gpu_info():
     print("=== GPU INFO ===")
     
