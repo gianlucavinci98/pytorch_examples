@@ -21,8 +21,45 @@ def print_gpu_info():
         print(f"Name: {torch.cuda.get_device_name(i)}")
         
         props = torch.cuda.get_device_properties(i)
-        print(f"Total Memory: {props.total_memory / 1024**3:.2f} GB")
-        print(f"Multiprocessors: {props.multi_processor_count}")
+    
+    # Memoria
+    total_mem_gb = props.total_memory / 1024**3
+    print(f"Total Memory: {total_mem_gb:.2f} GB")
+    
+    # Architettura
+    print(f"Compute Capability: {props.major}.{props.minor}")
+    
+    # Core / parallelismo
+    print(f"Multiprocessors (SM): {props.multi_processor_count}")
+    print(f"Max Threads per Block: {props.max_threads_per_block}")
+    print(f"Max Threads per SM: {props.max_threads_per_multiprocessor}")
+    
+    # Dimensioni kernel
+    print(f"Max Grid Size: {props.max_grid_size}")
+    print(f"Max Block Size: {props.max_threads_dim}")
+    
+    # Clock (se disponibile)
+    try:
+        print(f"Clock Rate: {props.clock_rate / 1000:.2f} MHz")
+    except:
+        pass
+    
+    # Memoria condivisa / cache
+    print(f"Shared Memory per Block: {props.shared_memory_per_block / 1024:.2f} KB")
+    print(f"L2 Cache Size: {props.l2_cache_size / 1024:.2f} KB")
+    
+    # Warp
+    print(f"Warp Size: {props.warp_size}")
+    
+    # Utilizzo memoria runtime
+    allocated = torch.cuda.memory_allocated(i) / 1024**2
+    reserved = torch.cuda.memory_reserved(i) / 1024**2
+    print(f"Memory Allocated (runtime): {allocated:.2f} MB")
+    print(f"Memory Reserved (cache): {reserved:.2f} MB")
+    
+    # Device corrente
+    current = torch.cuda.current_device()
+    print(f"Is Current Device: {current == i}")
     
     print("=================")
 
