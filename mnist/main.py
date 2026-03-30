@@ -41,13 +41,6 @@ def print_gpu_info():
     except:
         pass
     
-    
-    # Utilizzo memoria runtime
-    allocated = torch.cuda.memory_allocated(i) / 1024**2
-    reserved = torch.cuda.memory_reserved(i) / 1024**2
-    print(f"Memory Allocated (runtime): {allocated:.2f} MB")
-    print(f"Memory Reserved (cache): {reserved:.2f} MB")
-    
     # Device corrente
     current = torch.cuda.current_device()
     print(f"Is Current Device: {current == i}")
