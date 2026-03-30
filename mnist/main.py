@@ -32,7 +32,7 @@ def print_gpu_info():
     # Core / parallelismo
     print(f"Multiprocessors (SM): {props.multi_processor_count}")
     print(f"Max Threads per Block: {props.max_threads_per_block}")
-    print(f"Max Threads per SM: {props.ax_threads_per_multi_processor}")
+    print(f"Max Threads per SM: {props.max_threads_per_multi_processor}")
     
     # Dimensioni kernel
     print(f"Max Grid Size: {props.max_grid_size}")
