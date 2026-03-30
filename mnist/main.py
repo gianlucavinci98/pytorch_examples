@@ -6,6 +6,33 @@ import torch.optim as optim
 from torchvision import datasets, transforms
 from torch.optim.lr_scheduler import StepLR
 
+import os
+print("=== ENV DEBUG ===")
+print("CUDA_VISIBLE_DEVICES:", os.environ.get("CUDA_VISIBLE_DEVICES"))
+print("=================")
+
+def print_gpu_info():
+    print("=== GPU INFO ===")
+    
+    if not torch.cuda.is_available():
+        print("CUDA not available")
+        return
+    
+    device_count = torch.cuda.device_count()
+    print(f"Visible CUDA devices: {device_count}")
+    
+    for i in range(device_count):
+        print(f"\n--- Device {i} ---")
+        print(f"Name: {torch.cuda.get_device_name(i)}")
+        
+        props = torch.cuda.get_device_properties(i)
+        print(f"Total Memory: {props.total_memory / 1024**3:.2f} GB")
+        print(f"Multiprocessors: {props.multi_processor_count}")
+    
+    print("=================")
+
+print_gpu_info()
+
 
 class Net(nn.Module):
     def __init__(self):
